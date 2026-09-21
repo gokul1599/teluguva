@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-telugu: 'Noto Sans Telugu', 'Gautami', 'Mandali', sans-serif;
+  }
+
+  body {
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  @media (max-width: 768px) {
+    main {
+      padding-bottom: 5rem;
+    }
+  }
+}
+
+.font-telugu {
+  font-family: var(--font-telugu), system-ui, -apple-system, sans-serif;
+}
+
+/* Glassmorphism surfaces */
+.glass-surface {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.dark .glass-surface {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(51, 65, 85, 0.4);
+}
+
+/* Scanner Laser Animation */
+@keyframes laser-sweep {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 92%;
+    opacity: 1;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.8;
+  }
+}
+
+.animate-laser {
+  animation: laser-sweep 2.2s ease-in-out infinite;
+}
+
+/* Floating Telugu Glyph Animation */
+@keyframes float-glyph {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-glyph 7s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-glyph 5.5s ease-in-out infinite reverse;
+}
+
+/* Waveform Bars */
+@keyframes bar-scale {
+  0%, 100% {
+    height: 15%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+
+.waveform-bar {
+  transform-origin: bottom;
+  border-radius: 9999px;
+  transition: height 0.1s ease-in-out;
+}
+
+.waveform-active {
+  animation: bar-scale 0.8s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
